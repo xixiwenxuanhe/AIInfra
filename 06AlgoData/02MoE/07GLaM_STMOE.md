@@ -58,7 +58,7 @@ ST-MoE 论文发现，**追求极致的性能（质量）往往需要引入更�
 
 可以发现：输入抖动和 Dropout 都提高了稳定性，但会导致模型质量显着下降。
 
-![](https://pic1.zhimg.com/v2-c9d72eeff4457cd177713ce132ee36c4_1440w.jpg)
+![](images/07MOEGLaM_STMOE_01.png)
 
 这是因为，虽然 Dropout 和噪声等防止神经元之间复杂的共适应，但Dropout和噪声的随机性直接与MoE的专家专业化目标是相冲突的。
 
@@ -117,7 +117,7 @@ Router Z-Loss并非一个通用正则项，而是专门针对Router机制在训�
 * 要使得模型效果好, expert要足够大. 如果一个expert足够大时一个expert就对应多个core来分配, 也就是一个expert对应 NE 个device. expert的权重shape为 [E,M,H], 按专家维度 E 和hidden维度 H 来切分; `input activation tensor` 的shape大小为 [B,S,M], 按 batch维度 B 和 model维度 M 来进行切分；
 * 同时也依赖 `GSPMD`的编译pass过程来决定剩下tensor的切分策略。
 
-![](https://www.mltalks.com/media/17240445711793.jpg)
+![Moe 前世今生](images/02MOEHistory_10.png)
 
 ### 路由机制与负载均衡的协同优化
 
@@ -137,7 +137,6 @@ GLaM的核心贡献，在于它成功地将 **“模型容量”与“计算成�
 
 未来模型的竞争，将不再是参数的单纯堆砌，而是转向更精巧的架构设计。静态、固定的计算图或许并非智能的唯一形态。像MoE这样根据输入动态分配计算资源的“条件计算”范式，更能模拟智能系统对资源的灵活调配。在算力成为稀缺资源的今天，主动追求能耗的降低，这对于AI技术的普惠与可持续发展具有深远意义。
 
-
 ## 引用
 
 https://zhuanlan.zhihu.com/p/653796685
@@ -146,9 +145,9 @@ https://www.mltalks.com/posts/847141942/
 
 https://www.cnblogs.com/ExMan/p/18709928
 
-
 ## 本节视频
 
 <html>
 <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114097265906379&bvid=BV1L59qYqEVw&cid=28667087820&p=1&as_wide=1&high_quality=1&danmaku=0&t=30&autoplay=0" width="100%" height="500" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
 </html>
+
