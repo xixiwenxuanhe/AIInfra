@@ -10,12 +10,12 @@
 3.  学习如何对训练过程进行详细的性能分析与可视化。
 4.  量化DDP带来的训练加速比和吞吐量提升。
 
-## 1. DP 基本原理
+## 1. DDP 基本原理
 
 数据并行的核心思想是将模型复制到多个设备上，每个设备处理一部分独立的数据子集，然后通过通信聚合所有设备计算出的梯度，最后用聚合后的梯度来更新所有设备上的模型参数，以确保模型的一致性。
 
 <div align="center">
-    <img src="./images/Code01DDP01.png" >
+    <img src="./images/NewCode01DDP01.png" >
     <br>
     <em>图1：DDP基本原理</em>
 </div>
@@ -83,7 +83,7 @@ if torch.cuda.is_available():
     print(f"Number of GPUs: {torch.cuda.device_count()}")
 ```
 
-## 3. 辅助工具与数据记录
+## 3. 辅助类与数据记录
 
 为了精确地测量和记录训练过程中的各项性能指标，我们定义了两个辅助类：AverageMeter用于计算和存储某个指标（如批处理时间、数据加载时间）的当前值和平均值。TrainingLogger用于在训练过程中，按步数记录损失、准确率、吞吐量和各种时间指标，方便后续进行可视化。
 
@@ -360,7 +360,7 @@ def main():
 ### 9.1 核心性能对比分析
 
 <div align="center">
-    <img src="./images/Code01DDP02.png" >
+    <img src="./images/NewCode01DDP02.png" >
     <br>
     <em>图2：单GPU和DDP性能对比图</em>
 </div>
@@ -378,7 +378,7 @@ def main():
 ### 9.2 训练耗时分解
 
 <div align="center">
-    <img src="./images/Code01DDP03.png" >
+    <img src="./images/NewCode01DDP03.png" >
     <br>
     <em>图3：单GPU和DDP时间分解对比图</em>
 </div>
